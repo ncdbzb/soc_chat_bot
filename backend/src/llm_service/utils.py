@@ -1,20 +1,14 @@
 import httpx
 import pytz
 from datetime import datetime
-
-from src.auth.models import user
-from src.llm_service.schemas import ContestResponse
-from src.llm_service.models import contest
-
+from config.config import SOC_LLM_PORT
 
 
 async def send_data_to_llm(endpoint: str, data: dict):
     async with httpx.AsyncClient(timeout=150) as client:
-        url = f"http://gigachat_api:8080/{endpoint}"
+        url = f"http://soc_llm:{SOC_LLM_PORT}/{endpoint}"
         response = await client.post(url, json=data)
         return response.json()
-
-
 
 
 def convert_time(cur_time: str | datetime) -> datetime:

@@ -46,8 +46,8 @@ services:
     container_name: soc_llm
     env_file:
       - .env
-    expose:
-      - "5000"
+    ports:
+      - "5000:5000"
     restart: always
     depends_on:
       - backend
@@ -58,7 +58,11 @@ services:
       dockerfile: Dockerfile.frontend
     container_name: frontend
     env_file:
-      - .env
+      - ./frontend/.env
+#    environment:
+#      - REACT_APP_API_URL=https://localhost/api
+    volumes:
+      - nginx_certs:/etc/nginx
     ports:
       - "443:443"
     restart: always
@@ -75,17 +79,18 @@ services:
       - "8888:80"
     restart: always
 
-  flower:
-    image: mher/flower:latest
-    container_name: flower
-    env_file:
-      - .env
-    ports:
-      - "5555:5555"
-    command: celery --broker=redis://redis:${REDIS_PORT}/0 flower --port=5555
-    depends_on:
-      - redis
-      - backend
+#  flower:
+#    image: mher/flower:latest
+#    container_name: flower
+#    env_file:
+#      - .env
+#    ports:
+#      - "5555:5555"
+#    command: celery --broker=redis://redis:${REDIS_PORT}/0 flower --port=5555
+#    depends_on:
+#      - redis
+#      - backend
 
 volumes:
   pgdata:
+  nginx_certs:

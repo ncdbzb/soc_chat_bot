@@ -8,7 +8,6 @@ from src.admin_panel.models import admin_requests
 from src.services.celery_service import send_email
 from sqlalchemy import select, update, func, and_
 from src.auth.auth_config import current_superuser
-from src.llm_service.models import request_statistic, feedback
 from config.config import SECRET_MANAGER as verification_token_secret
 
 
@@ -82,49 +81,3 @@ async def accept_request(
     await session.commit()
 
     return {'status': f'request #{request_id} has been accepted successfully'}
-
-
-@router.post('/get_feedback')
-async def get_feedback(
-        all_feedbacks: bool,
-        user: AuthUser = Depends(current_superuser),
-        session: AsyncSession = Depends(get_async_session)
-):
-    if all_feedbacks:
-        query = select(feedback)
-        result = await session.execute(query)
-    else:
-        query = select(feedback).where(feedback.c.viewed == False)
-        result = await session.execute(query)
-
-    return result.mappings().all()
-
-
-@router.post('/set_viewed')
-async def set_viewed(
-        feedback_id: int,
-        user: AuthUser = Depends(current_superuser),
-        session: AsyncSession = Depends(get_async_session)
-):
-    stmt = update(feedback).where(feedback.c.id == int(feedback_id)).values(viewed=True)
-    await session.execute(stmt)
-    await session.commit()
-
-    return {'status': f'feedback #{feedback_id} was viewed'}
-
-@router.post('/get_tokens')
-async def get_tokens(
-        operation: str,
-        user: AuthUser = Depends(current_superuser),
-        session: AsyncSession = Depends(get_async_session)
-):
-    if operation in ('get_test', 'get_answer'):
-        query = select(func.sum(request_statistic.c.tokens)).where(request_statistic.c.operation == operation)
-        result = await session.execute(query)
-    elif operation == 'both':
-        query = select(func.sum(request_statistic.c.tokens))
-        result = await session.execute(query)
-    else:
-        raise ValueError("Unexpected operation")
-    
-    return result.scalar()

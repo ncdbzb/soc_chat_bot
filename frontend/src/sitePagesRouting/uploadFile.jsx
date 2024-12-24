@@ -1,9 +1,6 @@
 import React from 'react';
-import Header from '../components/main/header/Header';
-import FormUploadFile from '../components/uploadFile/UploadFile'
-// import MainContent from './MainContent';
-// import Footer from './Footer';
-
+import Header from '../components/layout/main/header/Header';
+import FormUploadFile from '../components/layout/uploadFile/UploadFile'
 const UploadFile = () => {
     return (
         <div>

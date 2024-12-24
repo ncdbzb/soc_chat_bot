@@ -1,8 +1,6 @@
 import React from 'react';
-import Header from '../components/main/header/Header';
-import FormLogIn from '../components/authorization/formLogIn/FormLogIn'
-
-
+import Header from '../components/layout/main/header/Header';
+import FormLogIn from '../components/layout/authorization/formLogIn/FormLogIn'
 const LogIn = () => {
     return (
         <div>

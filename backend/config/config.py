@@ -41,3 +41,6 @@ SERVER_DOMAIN = os.environ.get("SERVER_DOMAIN")
 
 REDIS_PORT = int(os.environ.get("REDIS_PORT"))
 
+SOC_LLM_PORT = int(os.environ.get("SOC_LLM_PORT"))
+
+

@@ -1,7 +1,7 @@
 import React, { useState, useEffect  } from 'react';
-import FormRequestAnswQuest from '../components/requestAnswerQuestion/formRequestAnswer/FormRequestAnswQuest';
-import FormRequestsTest from '../components/requestTest/FormRequstTest';
-import Header from '../components/main/header/Header';
+import FormRequestAnswQuest from '../components/layout/requestAnswerQuestion/formRequestAnswer/FormRequestAnswQuest';
+import FormRequestsTest from '../components/layout/requestTest/FormRequstTest';
+import Header from '../components/layout/main/header/Header';
 const Request = ( ) => {
   const [flag, setFlag] = useState(false);
   const params = new URLSearchParams(window.location.search);

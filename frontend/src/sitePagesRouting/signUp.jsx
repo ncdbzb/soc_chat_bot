@@ -1,9 +1,6 @@
 import React from 'react';
-import Header from '../components/main/header/Header';
-import FormSignUp from '../components/registration/formSignUp/SignUp'
-// import MainContent from './MainContent';
-// import Footer from './Footer';
-
+import Header from '../components/layout/main/header/Header';
+import FormSignUp from '../components/layout/registration/formSignUp/SignUp'
 const SingUp = () => {
     return (
         <div>

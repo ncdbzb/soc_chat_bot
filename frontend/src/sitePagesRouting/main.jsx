@@ -1,7 +1,6 @@
 import React from 'react';
-import Header from '../components/main/header/Header';
-import Promo from '../components/main/promo/Promo';
-
+import Header from '../components/layout/main/header/Header';
+import Promo from '../components/layout/main/promo/Promo';
 const Main = () => {
     return (
         <div>

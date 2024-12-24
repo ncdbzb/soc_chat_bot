@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import Header from '../components/main/header/Header';
-import WorkDocumentation from '../components/workDocumentation/workDocumentation/WorkDocumentation'
-
-
+import React from 'react';
+import Header from '../components/layout/main/header/Header';
+import WorkDocumentation from '../components/layout/workDocumentation/workDocumentation/WorkDocumentation'
 const Work = () => {
     return (
         <div>

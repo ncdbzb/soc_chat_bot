@@ -6,16 +6,19 @@ import LogIn from './sitePagesRouting/logIn';
 import Request from './sitePagesRouting/requestDocumentation'
 import UploadFile from './sitePagesRouting/uploadFile';
 import PersonArea from './sitePagesRouting/personArea';
-import {PrivateRouteUnauthorized} from './scripts/PrivateRouteUnauthorized';
-import { PrivateRouteAuthorized } from './scripts/PrivateRouteAuthorized';
+import {PrivateRouteUnauthorized} from './components/scripts/PrivateRouteUnauthorized'
+import { PrivateRouteAuthorized } from './components/scripts/PrivateRouteAuthorized';
 import FormForgotPassword from './sitePagesRouting/forgotPassword';
 import FormResetPassword from './sitePagesRouting/resetPassword';
 import LeaderboardDatapkPage from './sitePagesRouting/leaderboardDatapk';
 import Work from './sitePagesRouting/Work';
+import { Provider } from 'react-redux';
+import { store } from './components/store/store';
 
 
 function App() {  
   return (
+    <Provider store={store}>
       <BrowserRouter>
         <Routes>
             <Route path="/" element={<Main /> } />
@@ -36,6 +39,7 @@ function App() {
             <Route path='/leaderboard/DATAPK_ITM_VERSION_1_7'  element={<LeaderboardDatapkPage data='DATAPK_ITM_VERSION_1_7'  />} />
         </Routes>
       </BrowserRouter>
+    </Provider>
   )
 }
 

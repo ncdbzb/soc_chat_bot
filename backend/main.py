@@ -12,7 +12,7 @@ from src.llm_service.router import router as llm_service_router
 from src.admin_panel.router import router as admin_panel_router
 from src.llm_service.contest import router as contest_router
 from config.config import CORS_ORIGINS
-
+from config.script import init_soc_doc
 
 app = FastAPI(
     title="SOC-CHAT-BOT",
@@ -78,7 +78,7 @@ app.include_router(
 )
 
 async def main():
-
+    await init_soc_doc('SOC')
     config = uvicorn.Config(
         app,
         host="0.0.0.0",
